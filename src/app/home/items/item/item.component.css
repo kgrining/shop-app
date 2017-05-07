@@ -1,0 +1,11 @@
+.cardClass {
+  border: solid 1px #ddd;
+}
+.even {
+  background-color: #e3ffd6;
+}
+
+.odd {
+  background-color: #f1ffeb;
+}
+

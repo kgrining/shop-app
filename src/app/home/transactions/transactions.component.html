@@ -1,0 +1,11 @@
+<div *ngFor="let x of transactions">
+  <app-transaction-item [transactionItem]="x"></app-transaction-item>
+</div>
+
+<div *ngIf="isEmpty">
+  <div class="card text-center">
+    <div class="card-block">
+      <h4 class="card-title">Your history is empty. Consider buying something in our shop!</h4>
+    </div>
+  </div>
+</div>

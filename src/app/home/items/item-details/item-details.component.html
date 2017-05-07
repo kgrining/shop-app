@@ -1,0 +1,17 @@
+<div *ngIf="item">
+  <div class="cardClass">
+    <img class="card-img-top" src={{item.imgPath}} alt="Img not loaded!">
+    <div class="card-block">
+      <h4 class="card-title">{{item.name}} - {{item.price | currency:'EUR':true}}</h4>
+      <p class="card-text">{{item.desc}}</p>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-success" (click)="onAdd()">Add to basket!</button>
+    </div>
+  </div>
+  <div *ngFor="let opinion of item.opinions">
+    Opinion by {{opinion.owner.username}} (posted on {{opinion.date | date:'short'}}): {{opinion.description}}
+  </div>
+  <input type="text" [(ngModel)]="newOpinionDesc">
+  <button class="btn btn-primary" (click)="onOpinion()">Add opinion</button>
+</div>

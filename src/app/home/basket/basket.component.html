@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class=" col-md-12" *ngFor="let x of basket">
+      <app-basket-item [basketItem]="x"></app-basket-item>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div *ngIf="basket.length > 0">
+        <h4>{{basketPrice | currency:'EUR':true}}</h4>
+        <button class="btn btn-success" (click)=onBuy()>Buy now!</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+  <div *ngIf="basket.length === 0">
+    <div class="card text-center">
+      <div class="card-block">
+        <h4 class="card-title">Your basket is empty, go add something!</h4>
+      </div>
+    </div>
+  </div>
+      <button class="btn btn-info" (click)="onSave()">Save this basket</button>
+    </div>
+  </div>
+
+
+
+  <button class="btn btn-danger" (click)="onLoad()">Load basket</button>
+
+</div>

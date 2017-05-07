@@ -1,0 +1,5 @@
+<div class="row">
+  <button class="btn btn-danger" (click)="onRemove()">Remove!</button>
+  {{basketItem.item.name}} - {{basketItem.quantity}}
+  <input type="number" min="1" [(ngModel)]="currentQuantity" (keyup)="onQuantityChange()" appOnlyNumbers="true">
+</div>

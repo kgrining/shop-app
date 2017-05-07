@@ -1,2 +1,13 @@
-# shop-app
-This is frontend part of a simple shop app written to catch up with new Angular
+## Shop-App
+
+This is the frontend part of a simple shop web app written to get familiar with Angular + Hapi + Mongo
+
+
+## Installation
+
+`npm install`
+
+
+## Running
+
+`npm start`
