@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {BasketService} from "../../services/basket.service";
-import {Item} from "../items/item/item.model";
-import {TransactionService} from "../../services/transaction.service";
+import {BasketService} from '../../services/basket.service';
+import {Item} from '../items/item/item.model';
+import {TransactionService} from '../../services/transaction.service';
 
 @Component({
   selector: 'app-basket',
@@ -10,16 +10,16 @@ import {TransactionService} from "../../services/transaction.service";
 })
 export class BasketComponent implements OnInit {
 
-  basket : Array<{item: Item, quantity: number}>;
-  basketPrice : number;
+  basket: Array<{item: Item, quantity: number}>;
+  basketPrice: number;
   constructor(private basketService: BasketService, private transactionService: TransactionService) {
   }
 
   ngOnInit() {
     this.basket = this.basketService.basket;
-    this.basketPrice = this.basket.reduce((total,current) => {
-      return total + (current.item.price*current.quantity)
-    },0);
+    this.basketPrice = this.basket.reduce((total, current) => {
+      return total + (current.item.price * current.quantity);
+    }, 0);
     this.basketService.basketPriceSubject.subscribe(
       (basketPrice: number) => {
         this.basketPrice = basketPrice;

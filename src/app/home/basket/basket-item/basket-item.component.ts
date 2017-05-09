@@ -11,11 +11,12 @@ export class BasketItemComponent implements OnInit {
 
   @Input() basketItem: {item: Item, quantity: number};
   currentQuantity: number;
-
+  currentSum: number;
   constructor(private basketService: BasketService) { }
 
   ngOnInit() {
     this.currentQuantity = this.basketItem.quantity;
+    this.currentSum = this.basketItem.quantity * this.basketItem.item.price;
   }
 
   onRemove() {
@@ -23,7 +24,8 @@ export class BasketItemComponent implements OnInit {
   }
 
   onQuantityChange() {
-    if(this.currentQuantity !== this.basketItem.quantity) {
+    if (this.currentQuantity !== this.basketItem.quantity) {
+      this.currentSum = this.currentQuantity * this.basketItem.item.price;
       this.basketService.changeItemQuantity(this.basketItem.item, this.currentQuantity);
     }
   }

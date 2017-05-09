@@ -1,34 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class=" col-md-12" *ngFor="let x of basket">
-      <app-basket-item [basketItem]="x"></app-basket-item>
-    </div>
-  </div>
-
-  <div class="row">
     <div class="col-md-12">
-      <div *ngIf="basket.length > 0">
-        <h4>{{basketPrice | currency:'EUR':true}}</h4>
-        <button class="btn btn-success" (click)=onBuy()>Buy now!</button>
+
+      <div *ngIf="basket.length === 0">
+        <div class="text-center">
+          <div class="card-block">
+            <h2 class="card-title" style="color: #0275d8;">Your basket is empty, go add something!</h2>
+            <button class="btn btn-outline-primary" (click)="onLoad()">Load basket</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
-  <div *ngIf="basket.length === 0">
-    <div class="card text-center">
-      <div class="card-block">
-        <h4 class="card-title">Your basket is empty, go add something!</h4>
+      <div *ngIf="basket.length !== 0">
+        <div class="col-xs-12">
+          <div *ngFor="let x of basket">
+            <app-basket-item [basketItem]="x"></app-basket-item>
+          </div>
+
+          <div style="float: right;" *ngIf="basket.length > 0">
+            <p>{{ basketPrice | currency:'EUR':true}}</p>
+          </div>
+
+          <div style="clear: both;" class="text-center">
+            <button class="btn btn-success" (click)=onBuy()>Buy now!</button>
+            <hr>
+            <button class="btn btn-outline-primary" (click)="onSave()">Save this basket</button>
+            <button class="btn btn-outline-primary" (click)="onLoad()">Load basket</button>
+          </div>
+
+        </div>
       </div>
+
     </div>
   </div>
-      <button class="btn btn-info" (click)="onSave()">Save this basket</button>
-    </div>
-  </div>
-
-
-
-  <button class="btn btn-danger" (click)="onLoad()">Load basket</button>
-
 </div>

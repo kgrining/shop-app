@@ -1,4 +1,4 @@
-import {Item} from "../items/item/item.model";
+import {Item} from '../items/item/item.model';
 
 export class Transaction {
   public date: Date;

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Transaction} from "../home/transactions/transaction.model";
-import {Item} from "../home/items/item/item.model";
-import {Http, Response} from "@angular/http";
-import {AuthService} from "./auth.service";
+import {Transaction} from '../home/transactions/transaction.model';
+import {Item} from '../home/items/item/item.model';
+import {Http, Response} from '@angular/http';
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class TransactionService {

@@ -7,15 +7,15 @@
     <!--<button class="btn btn-danger" (click)="onAdd()">Add to basket!</button>-->
   <!--</div>-->
 <!--</div>-->
-<div class="cardClass" [ngClass]="{'odd': nr%2===1, 'even': nr%2===0}">
+<div class="cardClass" class="odd"> <!--[ngClass]="{'odd': nr%2===1, 'even': nr%2===0}"-->
   <img class="card-img-top" width="100%" src={{item.imgPath}} alt="Img not loaded!">
   <div class="card-block">
-    <h4 class="card-title">{{item.name}} - {{item.price | currency:'EUR':true}}</h4>
-    <p class="card-text" style="word-break: break-all">{{item.desc | slice:0:80}}</p>
-  </div>
-  <div class="card-footer">
-    <button class="btn btn-success" (click)="onAdd()">Add to basket!</button>
-    <button class="btn btn-info" [routerLink]="['/item-details', item._id]">Details</button>
+    <h4 class="card-title">{{item.name}}  </h4>
+
+    <h6 style="text-align: left" class="card-text" >{{item.desc | slice:0:80}}</h6>
+    <h6 style="color: #666"> {{item.price | currency:'EUR':true}}</h6>
   </div>
 
+    <button class="btn btn-primary" (click)="onAdd()">Add to basket!</button>
+    <button class="btn btn-primary" [routerLink]="['/item-details', item._id]">Details</button>
 </div>

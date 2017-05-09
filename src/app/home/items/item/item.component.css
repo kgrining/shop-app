@@ -1,11 +1,13 @@
 .cardClass {
   border: solid 1px #ddd;
 }
-.even {
+/*.even {
   background-color: #e3ffd6;
-}
+}*/
 
 .odd {
-  background-color: #f1ffeb;
+  background-color: #FFFFFF;
+  border: solid 1px #d8d8da;
+  padding-bottom: 15px;
 }
 

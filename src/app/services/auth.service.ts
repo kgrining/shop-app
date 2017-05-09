@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from "@angular/http";
-import {User} from "../landing/user.model";
+import {Http, Response} from '@angular/http';
+import {User} from '../landing/user.model';
 import 'rxjs/Rx';
-import {Router} from "@angular/router";
-import {BasketService} from "./basket.service";
+import {Router} from '@angular/router';
+import {BasketService} from './basket.service';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +17,7 @@ export class AuthService {
       )
       .subscribe(
         (token) => {
-          localStorage.setItem('token',token);
+          localStorage.setItem('token', token);
           this.basketService.clearBasket();
           this.router.navigate(['/']);
         },
@@ -52,7 +52,7 @@ export class AuthService {
 
   getMyUser() {
     const token = this.hasToken() ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.get('api/users/me' + token).map((response)=>response.json())
+    return this.http.get('api/users/me' + token).map((response) => response.json());
   }
 
 }

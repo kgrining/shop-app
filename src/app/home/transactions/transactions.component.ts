@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from "./transaction.model";
-import {TransactionService} from "../../services/transaction.service";
+import {Transaction} from './transaction.model';
+import {TransactionService} from '../../services/transaction.service';
 
 @Component({
   selector: 'app-transactions',
@@ -12,14 +12,14 @@ export class TransactionsComponent implements OnInit {
   transactions: Transaction[];
   isEmpty: Boolean = false;
 
-  constructor(private transactionService:TransactionService) {
+  constructor(private transactionService: TransactionService) {
   }
 
   ngOnInit() {
     this.transactionService.getMyHistory().subscribe(
       (response) => {
         this.transactions = response;
-        this.isEmpty = this.transactions.length===0;
+        this.isEmpty = this.transactions.length === 0;
       },
         (error) => console.log(error)
     );

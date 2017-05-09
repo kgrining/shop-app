@@ -1,5 +1,14 @@
+
 <div class="row">
-  <button class="btn btn-danger" (click)="onRemove()">Remove!</button>
-  {{basketItem.item.name}} - {{basketItem.quantity}}
-  <input type="number" min="1" [(ngModel)]="currentQuantity" (keyup)="onQuantityChange()" appOnlyNumbers="true">
+  <div class="col-md-12 basketclass">
+
+  <span >{{ basketItem.item.name }}</span>
+
+      <input type="text" min="1" [(ngModel)]="currentQuantity" (keyup)="onQuantityChange()" appOnlyNumbers="true">
+    <span >x {{ basketItem.item.price | currency:'EUR':true}}</span>
+    <button class="alignright btn btn-outline-danger" (click)="onRemove()">Remove!</button>
+    <span class="alignright">{{currentSum | currency:'EUR':true}}</span>
+
+</div>
+
 </div>

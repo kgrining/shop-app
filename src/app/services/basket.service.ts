@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Item} from "../home/items/item/item.model";
-import {Subject} from "rxjs/Subject";
-import {Http} from "@angular/http";
+import {Item} from '../home/items/item/item.model';
+import {Subject} from 'rxjs/Subject';
+import {Http} from '@angular/http';
 
 @Injectable()
 export class BasketService {
@@ -26,8 +26,8 @@ export class BasketService {
 
   changeItemQuantity(changedItem: Item, newQuantity: number) {
     const ind = this.basket.findIndex(x => x.item.name === changedItem.name);
-    if(ind === -1) {
-      console.log("item not in basket")
+    if (ind === -1) {
+      console.log('item not in basket');
     } else {
       const quantDiff = newQuantity - this.basket[ind].quantity;
       this.basketPrice += quantDiff * changedItem.price;
@@ -40,7 +40,7 @@ export class BasketService {
   removeFromBasket(removedItem: Item) {
     const ind = this.basket.findIndex(x => x.item.name === removedItem.name);
     if(ind === -1) {
-      console.log("item not in basket")
+      console.log('item not in basket')
     } else {
       this.basketPrice -= this.basket[ind].quantity * removedItem.price;
       this.basketPriceSubject.next(this.basketPrice);
@@ -55,16 +55,16 @@ export class BasketService {
   }
 
   saveBasket() {
-    const token = localStorage.getItem('token')!==null ? '?token=' + localStorage.getItem('token') : '';
-    this.http.put('/api/users/saveBasket'+token,this.basket).subscribe(
+    const token = localStorage.getItem('token') !== null ? '?token=' + localStorage.getItem('token') : '';
+    this.http.put('/api/users/saveBasket' + token, this.basket).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
     );
   }
 
   getBasket() {
-    const token = localStorage.getItem('token')!==null ? '?token=' + localStorage.getItem('token') : '';
-    this.http.get('/api/users/getBasket'+token).map((response) => response.json()).subscribe(
+    const token = localStorage.getItem('token') !== null ? '?token=' + localStorage.getItem('token') : '';
+    this.http.get('/api/users/getBasket' + token).map((response) => response.json()).subscribe(
       (response) => {
         if(response) {
           this.basket = response;

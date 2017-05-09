@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
+import {NgForm} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -10,18 +10,17 @@ import {AuthService} from "../services/auth.service";
 export class LandingComponent implements OnInit {
   @ViewChild('f') signupForm: NgForm;
   @ViewChild('login') signinForm: NgForm;
+  user = {
+    username: '',
+    email: '',
+    password: ''
+  };
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
   }
-
-  user = {
-    username: '',
-    email: '',
-    password: ''
-  };
 
   onSubmit() {
     this.user.username = this.signupForm.value.username;
@@ -32,10 +31,8 @@ export class LandingComponent implements OnInit {
 
   }
 
-
   onLogin() {
     this.authService.signIn(this.signinForm.value.nameLogin,this.signinForm.value.passwordLogin);
     this.signinForm.reset();
   }
-
 }

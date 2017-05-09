@@ -8,23 +8,21 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {ItemsComponent} from './home/items/items.component';
-import {UserService} from "./services/user.service";
-import {ItemService} from "./services/item.service";
+import {ItemService} from './services/item.service';
 import {LandingComponent} from './landing/landing.component';
 import {AdminComponent} from './home/admin/admin.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {TransactionsComponent} from './home/transactions/transactions.component';
 import {BasketComponent} from './home/basket/basket.component';
 import {ItemComponent} from './home/items/item/item.component';
-import {BasketService} from "./services/basket.service";
+import {BasketService} from './services/basket.service';
 import { BasketItemComponent } from './home/basket/basket-item/basket-item.component';
 import { OnlyNumbersDirective } from './shared/only-numbers.directive';
 import { TransactionItemComponent } from './home/transactions/transaction-item/transaction-item.component';
-import {TransactionService} from "./services/transaction.service";
-import {AuthService} from "./services/auth.service";
-import {AuthGuardService} from "./services/auth-guard.service";
+import {TransactionService} from './services/transaction.service';
+import {AuthService} from './services/auth.service';
+import {AuthGuardService} from './services/auth-guard.service';
 import { ItemDetailsComponent } from './home/items/item-details/item-details.component';
-import {OpinionService} from "./services/opinion.service";
 
 
 @NgModule({
@@ -49,7 +47,7 @@ import {OpinionService} from "./services/opinion.service";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UserService, ItemService, BasketService, TransactionService, OpinionService, AuthService, AuthGuardService],
+  providers: [ItemService, BasketService, TransactionService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

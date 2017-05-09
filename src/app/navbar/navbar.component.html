@@ -1,13 +1,13 @@
-<nav class="navClass navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navClass navbar-toggleable-md navbar-light bg-faded">
   <div class="container">
   <a class="navbar-brand">Home</a>
-  <div class="collapse navbar-collapse">
+  <div class="navClass collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link" routerLink="/shop">Shop</a></li>
+      <li class="nav-item"><a class="nav-link " routerLink="/shop">Shop</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/history">History</a></li>
     </ul>
     <ul class="navbar-nav navbar-right">
-      <li class="nav-item"><a class="nav-link" routerLink="/basket">Basket({{price | currency:'EUR':true}})</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/basket">Basket {{ price | currency:'EUR':true}}</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/admin">Admin View</a></li>
       <li class="nav-item"><a class="nav-link" (click)="onLogout()">Log out</a></li>
     </ul>

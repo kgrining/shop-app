@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {ItemService} from "../../../services/item.service";
-import {Item} from "../item/item.model";
-import {BasketService} from "../../../services/basket.service";
-import {OpinionService} from "../../../services/opinion.service";
-import {Opinion} from "./opinion.model";
-import {AuthService} from "../../../services/auth.service";
-import {User} from "../../../landing/user.model";
+import {ActivatedRoute} from '@angular/router';
+import {ItemService} from '../../../services/item.service';
+import {Item} from '../item/item.model';
+import {BasketService} from '../../../services/basket.service';
+import {Opinion} from './opinion.model';
+import {AuthService} from '../../../services/auth.service';
+import {User} from '../../../landing/user.model';
 
 @Component({
   selector: 'app-item-details',
@@ -17,9 +16,9 @@ export class ItemDetailsComponent implements OnInit {
 
   item: Item;
   user: User;
-  newOpinionDesc: string = 'Write your opinion here!';
+  newOpinionDesc = 'Write your opinion here!';
   constructor(private route: ActivatedRoute, private itemService: ItemService,
-              private basketService: BasketService, private opinionService: OpinionService, private authService: AuthService) { }
+              private basketService: BasketService, private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getMyUser().subscribe(
@@ -32,7 +31,7 @@ export class ItemDetailsComponent implements OnInit {
         console.log(this.item);
       },
       (error) => console.log(error)
-    )
+    );
   }
 
   onAdd() {
@@ -40,9 +39,9 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   onOpinion() {
-    const newOpinion = new Opinion(new Date(),this.user,this.item,this.newOpinionDesc);
+    const newOpinion = new Opinion(new Date(), this.user, this.newOpinionDesc);
     this.item.opinions.push(newOpinion);
-    this.opinionService.addOpinion(this.newOpinionDesc, this.route.snapshot.params.id);
+    this.itemService.addOpinion(this.route.snapshot.params.id, this.newOpinionDesc);
     this.newOpinionDesc = '';
   }
 
