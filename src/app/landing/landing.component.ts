@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
+import {BasketService} from '../services/basket.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -10,29 +12,51 @@ import {AuthService} from '../services/auth.service';
 export class LandingComponent implements OnInit {
   @ViewChild('f') signupForm: NgForm;
   @ViewChild('login') signinForm: NgForm;
+  errorLoginMessage = '';
+  errorRegisterMessage = '';
   user = {
     username: '',
     email: '',
     password: ''
   };
-
-  constructor(private authService: AuthService) {
+  loginCredentials = {
+    usernameOrEmail: '',
+    password: ''
+  };
+  constructor(private authService: AuthService, private basketService: BasketService, private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  onSubmit() {
+  onRegister() {
     this.user.username = this.signupForm.value.username;
     this.user.email = this.signupForm.value.email;
     this.user.password = this.signupForm.value.password;
     this.signupForm.reset();
-    this.authService.signUp(this.user);
+    this.authService.signUp(this.user).subscribe(
+        (token) => {
+          localStorage.setItem('token', token);
+          this.basketService.clearBasket();
+          this.router.navigate(['/']);
+        },
+        (error) => this.errorRegisterMessage = 'Registration failed'
+      );
 
   }
 
   onLogin() {
-    this.authService.signIn(this.signinForm.value.nameLogin,this.signinForm.value.passwordLogin);
+    this.loginCredentials.usernameOrEmail = this.signinForm.value.usernameOrEmail;
+    this.loginCredentials.password = this.signinForm.value.passwordLogin;
     this.signinForm.reset();
+    this.authService.signIn(this.loginCredentials).subscribe(
+      token => {
+        localStorage.setItem('token', token);
+        this.basketService.clearBasket();
+        this.router.navigate(['/']);
+      },
+      (error) =>  this.errorLoginMessage = error.json().message
+    );
+
   }
 }

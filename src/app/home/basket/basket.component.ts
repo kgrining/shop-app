@@ -27,7 +27,11 @@ export class BasketComponent implements OnInit {
     );
     this.basketService.basketLoadedSubject.subscribe(
       (isLoaded: boolean) => {
-        this.basket = this.basketService.basket;
+        if(isLoaded) {
+          this.basket = this.basketService.basket;
+        } else {
+         alert('You don\'t have a saved basket!');
+        }
       }
     );
   }

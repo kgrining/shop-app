@@ -66,12 +66,12 @@ export class BasketService {
     const token = localStorage.getItem('token') !== null ? '?token=' + localStorage.getItem('token') : '';
     this.http.get('/api/users/getBasket' + token).map((response) => response.json()).subscribe(
       (response) => {
-        if(response) {
+        if (response) {
           this.basket = response;
           this.basketPrice = this.basket.reduce((total, current) => {
             return total + current.item.price * current.quantity;
           }, 0);
-          this.basketLoadedSubject.next(true);
+          response.length > 0 ? this.basketLoadedSubject.next(true) : this.basketLoadedSubject.next(false);
           this.basketPriceSubject.next(this.basketPrice);
         }
       },

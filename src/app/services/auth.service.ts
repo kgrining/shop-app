@@ -11,34 +11,17 @@ export class AuthService {
   }
 
   signUp(user: User) {
-    this.http.post('/api/users', user)
+    return this.http.post('/api/users', user)
       .map(
         (response: Response) => response.json().id_token
-      )
-      .subscribe(
-        (token) => {
-          localStorage.setItem('token', token);
-          this.basketService.clearBasket();
-          this.router.navigate(['/']);
-        },
-        (error) => console.log(error)
-      )
+      );
   }
 
-  signIn(name: String, password: String) {
-    const data = {username: name, password: password};
-    this.http.post('/api/users/authenticate', data)
+  signIn(data) {
+    return this.http.post('/api/users/authenticate', data)
       .map(
         (response: Response) => response.json().id_token
-      )
-      .subscribe(
-        token => {
-          localStorage.setItem('token', token);
-          this.basketService.clearBasket();
-          this.router.navigate(['/']);
-        },
-        (error) => console.log(error)
-      )
+      );
   }
 
   logOut() {

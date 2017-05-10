@@ -1,37 +1,58 @@
 <div class="container classhost">
-  <div class="row">
-    <div class="col-md-12">
-      <form (ngSubmit)="onSubmit()" #f="ngForm">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form (ngSubmit)="onRegister()" #f="ngForm">
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" name="email" ngModel id="email" placeholder="Enter email">
+          <input type="email" class="form-control" name="email"
+                 ngModel id="email" required #email="ngModel" email placeholder="Enter email">
+          <div [hidden]="email.valid || email.pristine"
+               class="alert alert-danger">
+            Valid email address is required
+          </div>
         </div>
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" ngModel id="username" placeholder="Enter username">
+          <input type="text" class="form-control" name="username" minlength="2"
+                 ngModel id="username" required #username="ngModel" placeholder="Enter username">
+        </div>
+        <div [hidden]="username.valid || username.pristine"
+             class="alert alert-danger">
+          Username of length at least 2 is required
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" ngModel id="password" placeholder="Password">
+          <input type="password" class="form-control" name="password"
+                 ngModel id="password" required #password="ngModel" placeholder="Password">
+          <div [hidden]="password.valid || password.pristine"
+               class="alert alert-danger">
+            Password is required
+          </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <div class="text-center">
+          <button class="btn btn-primary" type="submit">Register</button>
+        </div>
       </form>
+      <div *ngIf="errorRegisterMessage">{{errorRegisterMessage}}</div>
     </div>
   </div>
 <hr>
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
       <form (ngSubmit)="onLogin()" #login="ngForm">
         <div class="form-group">
           <label for="login">Login</label>
-          <input type="text" class="form-control" name="nameLogin" ngModel id="login" placeholder="Enter login">
+          <input type="text" class="form-control" name="usernameOrEmail" minlength="2" ngModel id="login" placeholder="Enter login">
         </div>
         <div class="form-group">
           <label for="passwordLogin">Password</label>
           <input type="password" class="form-control" name="passwordLogin" ngModel id="passwordLogin" placeholder="Password">
         </div>
-        <button class="btn btn-primary" type="submit">Login</button>
+        <div class="text-center">
+          <button class="btn btn-primary" type="submit">Login</button>
+        </div>
       </form>
+      <div *ngIf="errorLoginMessage">{{errorLoginMessage}}</div>
     </div>
   </div>
 </div>
