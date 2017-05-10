@@ -25,7 +25,7 @@ const routes: Routes = [
     ]
   },
   {path: 'landing', component: LandingComponent},
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: '/shop'}
 ];
 
 @NgModule({

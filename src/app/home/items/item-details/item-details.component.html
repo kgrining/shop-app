@@ -12,6 +12,6 @@
   <div *ngFor="let opinion of item.opinions">
     Opinion by {{opinion.user.username}} (posted on {{opinion.date | date:'short'}}): {{opinion.content}}
   </div>
-  <input type="text" [(ngModel)]="newOpinionDesc">
+  <input type="text" [(ngModel)]="newOpinionDesc" placeholder="Write your opinion here!">
   <button class="btn btn-primary" (click)="onOpinion()">Add opinion</button>
 </div>

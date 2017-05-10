@@ -16,7 +16,7 @@ export class ItemDetailsComponent implements OnInit {
 
   item: Item;
   user: User;
-  newOpinionDesc = 'Write your opinion here!';
+  newOpinionDesc = '';
   constructor(private route: ActivatedRoute, private itemService: ItemService,
               private basketService: BasketService, private authService: AuthService) { }
 
@@ -28,7 +28,6 @@ export class ItemDetailsComponent implements OnInit {
     this.itemService.getSingleItem(this.route.snapshot.params.id).subscribe(
       (response) => {
         this.item = response;
-        console.log(this.item);
       },
       (error) => console.log(error)
     );
