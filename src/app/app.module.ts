@@ -23,6 +23,8 @@ import {TransactionService} from './services/transaction.service';
 import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
 import { ItemDetailsComponent } from './home/items/item-details/item-details.component';
+import {AdminAuthGuardService} from './services/admin-auth-guard.service';
+import {AdminService} from './services/admin.service';
 
 
 @NgModule({
@@ -47,7 +49,7 @@ import { ItemDetailsComponent } from './home/items/item-details/item-details.com
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ItemService, BasketService, TransactionService, AuthService, AuthGuardService],
+  providers: [AdminService, ItemService, BasketService, TransactionService, AuthService, AuthGuardService, AdminAuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

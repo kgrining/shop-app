@@ -72,7 +72,9 @@ export class BasketService {
             return total + current.item.price * current.quantity;
           }, 0);
           response.length > 0 ? this.basketLoadedSubject.next(true) : this.basketLoadedSubject.next(false);
-          this.basketPriceSubject.next(this.basketPrice);
+          if(response.length > 0) {
+            this.basketPriceSubject.next(this.basketPrice);
+          }
         }
       },
       (error) => console.log(error)

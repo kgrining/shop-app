@@ -1,3 +1,14 @@
-<p>
-  admin works! (but is neither protected nor hidden yet)
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Users</h3>
+      <div *ngFor="let user of users">
+        {{user.username}} -  {{user.email}}
+      </div>
+      <h3>Transactions</h3>
+      <div *ngFor="let transaction of transactions">
+        price {{transaction.price}} - user {{transaction.owner.username}} with mail {{transaction.owner.email}}
+      </div>
+    </div>
+  </div>
+</div>

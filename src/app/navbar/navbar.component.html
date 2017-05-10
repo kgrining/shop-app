@@ -8,7 +8,7 @@
     </ul>
     <ul class="navbar-nav navbar-right">
       <li class="nav-item"><a class="nav-link" routerLink="/basket">Basket {{ price | currency:'EUR':true}}</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/admin">Admin View</a></li>
+      <li class="nav-item" *ngIf="me && me.admin"><a class="nav-link" routerLink="/admin">Admin View</a></li>
       <li class="nav-item"><a class="nav-link" (click)="onLogout()">Log out</a></li>
     </ul>
   </div>
