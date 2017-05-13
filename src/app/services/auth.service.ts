@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {User} from '../landing/user.model';
 import 'rxjs/Rx';
 import {Router} from '@angular/router';
-import {BasketService} from './basket.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: Http, private router: Router, private basketService: BasketService) {
+  constructor(private http: Http, private router: Router) {
   }
 
   signUp(user: User) {

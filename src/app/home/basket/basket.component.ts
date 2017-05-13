@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BasketService} from '../../services/basket.service';
-import {Item} from '../items/item/item.model';
+import {Item} from '../../models/item.model';
 import {TransactionService} from '../../services/transaction.service';
 
 @Component({
@@ -10,27 +10,24 @@ import {TransactionService} from '../../services/transaction.service';
 })
 export class BasketComponent implements OnInit {
 
-  basket: Array<{item: Item, quantity: number}>;
+  basket: Array<{ item: Item, quantity: number }>;
   basketPrice: number;
+
   constructor(private basketService: BasketService, private transactionService: TransactionService) {
   }
 
   ngOnInit() {
     this.basket = this.basketService.basket;
-    this.basketPrice = this.basket.reduce((total, current) => {
-      return total + (current.item.price * current.quantity);
-    }, 0);
+    this.basketPrice = this.basketService.calculatePrice();
     this.basketService.basketPriceSubject.subscribe(
-      (basketPrice: number) => {
-        this.basketPrice = basketPrice;
-      }
+      (basketPrice: number) => this.basketPrice = basketPrice
     );
     this.basketService.basketLoadedSubject.subscribe(
       (isLoaded: boolean) => {
-        if(isLoaded) {
+        if (isLoaded) {
           this.basket = this.basketService.basket;
         } else {
-         alert('You don\'t have a saved basket!');
+          alert('You don\'t have a saved basket!');
         }
       }
     );

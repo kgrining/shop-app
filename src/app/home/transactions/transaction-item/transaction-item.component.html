@@ -4,7 +4,7 @@
   </div>
   <div class="card-block">
     <h4 class="card-title">{{transactionItem.price | currency:'EUR':true}}</h4>
-    <div  *ngFor="let basketItem of transactionItem.basket">
+    <div *ngFor="let basketItem of transactionItem.basket">
       <p class="card-text">{{basketItem.item.name}} x {{basketItem.quantity}}</p>
     </div>
   </div>

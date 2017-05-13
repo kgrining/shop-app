@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, RequestOptions, XHRBackend} from '@angular/http';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -16,15 +16,16 @@ import {TransactionsComponent} from './home/transactions/transactions.component'
 import {BasketComponent} from './home/basket/basket.component';
 import {ItemComponent} from './home/items/item/item.component';
 import {BasketService} from './services/basket.service';
-import { BasketItemComponent } from './home/basket/basket-item/basket-item.component';
-import { OnlyNumbersDirective } from './shared/only-numbers.directive';
-import { TransactionItemComponent } from './home/transactions/transaction-item/transaction-item.component';
+import {BasketItemComponent} from './home/basket/basket-item/basket-item.component';
+import {OnlyNumbersDirective} from './shared/only-numbers.directive';
+import {TransactionItemComponent} from './home/transactions/transaction-item/transaction-item.component';
 import {TransactionService} from './services/transaction.service';
 import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
-import { ItemDetailsComponent } from './home/items/item-details/item-details.component';
+import {ItemDetailsComponent} from './home/items/item-details/item-details.component';
 import {AdminAuthGuardService} from './services/admin-auth-guard.service';
 import {AdminService} from './services/admin.service';
+import {AuthHttpService} from './services/auth-http.service';
 
 
 @NgModule({
@@ -49,7 +50,9 @@ import {AdminService} from './services/admin.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AdminService, ItemService, BasketService, TransactionService, AuthService, AuthGuardService, AdminAuthGuardService],
+  providers: [AdminService, ItemService, BasketService, TransactionService,
+    AuthService, AuthGuardService, AdminAuthGuardService, AuthHttpService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

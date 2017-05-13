@@ -1,20 +1,18 @@
-import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
-import {AuthService} from './auth.service';
+import {Injectable} from '@angular/core';
+import {AuthHttpService} from './auth-http.service';
 
 @Injectable()
 export class AdminService {
 
-  constructor(private http: Http, private authService: AuthService) {}
+  constructor(private http: AuthHttpService) {
+  }
 
   getAllUsers() {
-    const token = this.authService.hasToken() ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.get('api/users' + token).map((response) => response.json());
+    return this.http.get('api/users');
   }
 
   getAllTransactions() {
-    const token = this.authService.hasToken() ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.get('api/transactions' + token).map((response) => response.json());
+    return this.http.get('api/transactions');
   }
 
 }

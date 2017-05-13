@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent {
   @ViewChild('f') signupForm: NgForm;
   @ViewChild('login') signinForm: NgForm;
   errorLoginMessage = '';
@@ -23,11 +23,10 @@ export class LandingComponent implements OnInit {
     usernameOrEmail: '',
     password: ''
   };
+
   constructor(private authService: AuthService, private basketService: BasketService, private router: Router) {
   }
 
-  ngOnInit() {
-  }
 
   onRegister() {
     this.user.username = this.signupForm.value.username;
@@ -35,13 +34,13 @@ export class LandingComponent implements OnInit {
     this.user.password = this.signupForm.value.password;
     this.signupForm.reset();
     this.authService.signUp(this.user).subscribe(
-        (token) => {
-          localStorage.setItem('token', token);
-          this.basketService.clearBasket();
-          this.router.navigate(['/shop']);
-        },
-        (error) => this.errorRegisterMessage = 'Registration failed'
-      );
+      (token) => {
+        localStorage.setItem('token', token);
+        this.basketService.clearBasket();
+        this.router.navigate(['/shop']);
+      },
+      (error) => this.errorRegisterMessage = 'Registration failed'
+    );
 
   }
 
@@ -55,7 +54,7 @@ export class LandingComponent implements OnInit {
         this.basketService.clearBasket();
         this.router.navigate(['/shop']);
       },
-      (error) =>  this.errorLoginMessage = error.json().message
+      (error) => this.errorLoginMessage = error.json().message
     );
 
   }

@@ -1,0 +1,11 @@
+.buttons {
+  clear: both;
+}
+
+.price {
+  float: right;
+}
+
+.emptyBasket {
+  color: #0275d8;
+}

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Item} from "../../items/item/item.model";
-import {BasketService} from "../../../services/basket.service";
+import {Item} from '../../../models/item.model';
+import {BasketService} from '../../../services/basket.service';
 
 @Component({
   selector: 'app-basket-item',
@@ -9,10 +9,12 @@ import {BasketService} from "../../../services/basket.service";
 })
 export class BasketItemComponent implements OnInit {
 
-  @Input() basketItem: {item: Item, quantity: number};
+  @Input() basketItem: { item: Item, quantity: number };
   currentQuantity: number;
   currentSum: number;
-  constructor(private basketService: BasketService) { }
+
+  constructor(private basketService: BasketService) {
+  }
 
   ngOnInit() {
     this.currentQuantity = this.basketItem.quantity;

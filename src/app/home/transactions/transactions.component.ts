@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from './transaction.model';
+import {Transaction} from '../../models/transaction.model';
 import {TransactionService} from '../../services/transaction.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class TransactionsComponent implements OnInit {
         this.transactions = response;
         this.isEmpty = this.transactions.length === 0;
       },
-        (error) => console.log(error)
+      (error) => alert('Error occured')
     );
   }
 

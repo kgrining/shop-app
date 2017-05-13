@@ -1,4 +1,4 @@
-import {Opinion} from '../item-details/opinion.model';
+import {Opinion} from './opinion.model';
 export class Item {
   public _id: string;
   public name: string;

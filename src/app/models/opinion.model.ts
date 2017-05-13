@@ -1,4 +1,4 @@
-import {User} from '../../../landing/user.model';
+import {User} from '../landing/user.model';
 export class Opinion {
   public date: Date;
   public user: User;

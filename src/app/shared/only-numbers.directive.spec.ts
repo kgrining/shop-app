@@ -1,4 +1,4 @@
-import { OnlyNumbersDirective } from './only-numbers.directive';
+import {OnlyNumbersDirective} from './only-numbers.directive';
 
 describe('OnlyNumbersDirective', () => {
   it('should create an instance', () => {

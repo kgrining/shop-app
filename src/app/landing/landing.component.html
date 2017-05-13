@@ -36,17 +36,19 @@
       <div *ngIf="errorRegisterMessage">{{errorRegisterMessage}}</div>
     </div>
   </div>
-<hr>
+  <hr>
   <div class="row justify-content-center">
     <div class="col-md-6">
       <form (ngSubmit)="onLogin()" #login="ngForm">
         <div class="form-group">
           <label for="login">Login</label>
-          <input type="text" class="form-control" name="usernameOrEmail" minlength="2" ngModel id="login" placeholder="Enter login">
+          <input type="text" class="form-control" name="usernameOrEmail" minlength="2" ngModel id="login"
+                 placeholder="Enter login">
         </div>
         <div class="form-group">
           <label for="passwordLogin">Password</label>
-          <input type="password" class="form-control" name="passwordLogin" ngModel id="passwordLogin" placeholder="Password">
+          <input type="password" class="form-control" name="passwordLogin" ngModel id="passwordLogin"
+                 placeholder="Password">
         </div>
         <div class="text-center">
           <button class="btn btn-primary" type="submit">Login</button>

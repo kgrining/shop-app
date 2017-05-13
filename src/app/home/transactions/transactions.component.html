@@ -1,11 +1,11 @@
 <div *ngIf="isEmpty">
-    <div class="text-center">
-      <div class="card-block">
-        <h2 class="card-title" style="color: #0275d8;">Your history is empty. Consider buying something in our shop!</h2>
-      </div>
+  <div class="text-center">
+    <div class="card-block">
+      <h2 class="card-title" style="color: #0275d8;">Your history is empty. Consider buying something in our shop!</h2>
+    </div>
   </div>
 </div>
 
-<div *ngFor="let x of transactions">
-  <app-transaction-item [transactionItem]="x"></app-transaction-item>
+<div *ngFor="let transaction of transactions">
+  <app-transaction-item [transactionItem]="transaction"></app-transaction-item>
 </div>

@@ -1,12 +1,7 @@
-<!--<div class="row">-->
-  <!--<div class="col-md-4" *ngFor="let item of items; let i = index" [ngClass]="{'odd': i%2===1, 'even': i%2===0}">-->
-    <!--<app-item [item]="item"></app-item>-->
-  <!--</div>-->
-<!--</div>-->
-
 <div class="card-group">
-  <div  class="col-md-4 text-center" *ngFor="let item of items; let i = index">
-    <app-item [nr]="i" [item]="item"></app-item><br>
+  <div class="col-md-4 text-center" *ngFor="let item of items">
+    <app-item [item]="item"></app-item>
+    <br>
   </div>
 </div>
 

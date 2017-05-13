@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
 import {User} from '../../landing/user.model';
-import {Transaction} from '../transactions/transaction.model';
-import {Item} from '../items/item/item.model';
+import {Transaction} from '../../models/transaction.model';
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  templateUrl: './admin.component.html'
 })
 export class AdminComponent implements OnInit {
 
@@ -19,10 +17,10 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.adminService.getAllUsers().subscribe(
-    (response) => this.users = response, (error) => console.log(error)
+      (response) => this.users = response, (error) => alert('Error occured')
     );
     this.adminService.getAllTransactions().subscribe(
-      (response) => this.transactions = response, (error) => console.log(error)
+      (response) => this.transactions = response, (error) => alert('Error occured')
     );
   }
 

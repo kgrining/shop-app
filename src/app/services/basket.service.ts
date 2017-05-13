@@ -1,84 +1,80 @@
-import { Injectable } from '@angular/core';
-import {Item} from '../home/items/item/item.model';
+import {Injectable} from '@angular/core';
+import {Item} from '../models/item.model';
 import {Subject} from 'rxjs/Subject';
-import {Http} from '@angular/http';
+import {AuthHttpService} from './auth-http.service';
 
 @Injectable()
 export class BasketService {
 
-  basket : Array<{item: Item, quantity: number}> = [];
-  basketPrice : number = 0.0;
+  basket: { item: Item, quantity: number }[] = [];
   basketPriceSubject: Subject<number> = new Subject();
   basketLoadedSubject: Subject<boolean> = new Subject();
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttpService) {
+  }
 
   addToBasket(addedItem: Item) {
-    const ind = this.basket.findIndex(x => x.item.name === addedItem.name);
-    this.basketPrice += addedItem.price;
-    if(ind === -1) {
-      this.basket.push({item: addedItem, quantity: 1});
+    const basketItem = this.basket.find(current => current.item.name === addedItem.name);
+    if (basketItem === undefined) {
+      this.basket = [...this.basket, {item: addedItem, quantity: 1}];
     } else {
-      this.basket[ind].quantity++;
+      basketItem.quantity++;
     }
-    this.basketPriceSubject.next(this.basketPrice);
+    this.basketPriceSubject.next(this.calculatePrice());
   }
 
   changeItemQuantity(changedItem: Item, newQuantity: number) {
-    const ind = this.basket.findIndex(x => x.item.name === changedItem.name);
-    if (ind === -1) {
-      console.log('item not in basket');
+    const basketItem = this.basket.find(current => current.item.name === changedItem.name);
+    if (basketItem === undefined) {
+      alert('item not in basket');
     } else {
-      const quantDiff = newQuantity - this.basket[ind].quantity;
-      this.basketPrice += quantDiff * changedItem.price;
-      this.basketPriceSubject.next(this.basketPrice);
-      this.basket[ind].quantity = newQuantity;
+      basketItem.quantity = newQuantity;
+      this.basketPriceSubject.next(this.calculatePrice());
     }
 
   }
 
   removeFromBasket(removedItem: Item) {
-    const ind = this.basket.findIndex(x => x.item.name === removedItem.name);
-    if(ind === -1) {
-      console.log('item not in basket')
+    const basketItem = this.basket.find(current => current.item.name === removedItem.name);
+    if (basketItem === undefined) {
+      alert('item not in basket');
     } else {
-      this.basketPrice -= this.basket[ind].quantity * removedItem.price;
-      this.basketPriceSubject.next(this.basketPrice);
-      this.basket.splice(ind,1);
+      this.basket = this.basket.filter((current) => current.item.name !== removedItem.name);
+      this.basketPriceSubject.next(this.calculatePrice());
     }
   }
 
   clearBasket() {
     this.basket = [];
-    this.basketPrice = 0;
-    this.basketPriceSubject.next(this.basketPrice);
+    this.basketPriceSubject.next(this.calculatePrice());
   }
 
   saveBasket() {
-    const token = localStorage.getItem('token') !== null ? '?token=' + localStorage.getItem('token') : '';
-    this.http.put('/api/users/saveBasket' + token, this.basket).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
+    this.http.put('/api/users/saveBasket', this.basket).subscribe(
+      (response) => alert('Basket saved'),
+      (error) => alert('Error during basket saving')
     );
   }
 
   getBasket() {
-    const token = localStorage.getItem('token') !== null ? '?token=' + localStorage.getItem('token') : '';
-    this.http.get('/api/users/getBasket' + token).map((response) => response.json()).subscribe(
+    this.http.get('/api/users/getBasket').subscribe(
       (response) => {
         if (response) {
           this.basket = response;
-          this.basketPrice = this.basket.reduce((total, current) => {
-            return total + current.item.price * current.quantity;
-          }, 0);
-          response.length > 0 ? this.basketLoadedSubject.next(true) : this.basketLoadedSubject.next(false);
-          if(response.length > 0) {
-            this.basketPriceSubject.next(this.basketPrice);
+          this.basketLoadedSubject.next(response.length > 0);
+          if (response.length > 0) {
+            this.basketPriceSubject.next(this.calculatePrice());
           }
         }
       },
-      (error) => console.log(error)
+      (error) => alert('Error during basket loading')
     );
+  }
+
+  calculatePrice() {
+    return this.basket.reduce((total, current) => {
+      return total + current.item.price * current.quantity;
+    }, 0);
   }
 
 }

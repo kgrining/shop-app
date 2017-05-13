@@ -7,15 +7,12 @@ import {User} from '../landing/user.model';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   @Input() price: number;
   @Input() me: User;
 
   constructor(private authService: AuthService) {
-  }
-
-  ngOnInit() {
   }
 
   onLogout() {

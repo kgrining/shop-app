@@ -1,21 +1,12 @@
-
-<!--<div class="media">-->
-  <!--<img class="d-flex align-self-center mr-3" height="128px" width="128px" src="https://www.maxprog.com/img/cat.jpg" alt="img">-->
-  <!--<div class="media-body" style="word-break: break-all">-->
-    <!--<h5 class="mt-0 mb-1">{{item.name}}</h5>-->
-    <!--<p>{{item.desc | slice:0:155}}</p>-->
-    <!--<button class="btn btn-danger" (click)="onAdd()">Add to basket!</button>-->
-  <!--</div>-->
-<!--</div>-->
-<div class="cardClass" class="odd"> <!--[ngClass]="{'odd': nr%2===1, 'even': nr%2===0}"-->
+<div class="cardClass" class="odd">
   <img class="card-img-top" width="100%" src={{item.imgPath}} alt="Img not loaded!">
   <div class="card-block">
-    <h4 class="card-title">{{item.name}}  </h4>
+    <h4 class="card-title">{{item.name}} </h4>
 
-    <h6 style="text-align: left" class="card-text" >{{item.desc | slice:0:80}}</h6>
-    <h6 style="color: #666"> {{item.price | currency:'EUR':true}}</h6>
+    <h6 class="card-text desc">{{item.desc | slice:0:80}}</h6>
+    <h6 class="price"> {{item.price | currency:'EUR':true}}</h6>
   </div>
 
-    <button class="btn btn-primary" (click)="onAdd()">Add to basket!</button>
-    <button class="btn btn-primary" [routerLink]="['/item-details', item._id]">Details</button>
+  <button class="btn btn-primary" (click)="onAdd()">Add to basket!</button>
+  <button class="btn btn-primary" [routerLink]="['/item-details', item._id]">Details</button>
 </div>

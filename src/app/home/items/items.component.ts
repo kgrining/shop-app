@@ -3,8 +3,7 @@ import {ItemService} from '../../services/item.service';
 
 @Component({
   selector: 'app-items',
-  templateUrl: './items.component.html',
-  styleUrls: ['./items.component.css']
+  templateUrl: './items.component.html'
 })
 export class ItemsComponent implements OnInit {
 
@@ -16,7 +15,7 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
     this.itemService.getItems().subscribe(
       (response) => this.items = response,
-      (err) => console.log(err)
+      (err) => alert('Error occured')
     );
   }
 }

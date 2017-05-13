@@ -5,7 +5,7 @@
       <div *ngIf="basket.length === 0">
         <div class="text-center">
           <div class="card-block">
-            <h2 class="card-title" style="color: #0275d8;">Your basket is empty, go add something!</h2>
+            <h2 class="card-title emptyBasket">Your basket is empty, go add something!</h2>
             <button class="btn btn-outline-primary" (click)="onLoad()">Load basket</button>
           </div>
         </div>
@@ -17,11 +17,11 @@
             <app-basket-item [basketItem]="x"></app-basket-item>
           </div>
 
-          <div style="float: right;" *ngIf="basket.length > 0">
+          <div *ngIf="basket.length > 0">
             <p>{{ basketPrice | currency:'EUR':true}}</p>
           </div>
 
-          <div style="clear: both;" class="text-center">
+          <div class="text-center buttons">
             <button class="btn btn-success" (click)=onBuy()>Buy now!</button>
             <hr>
             <button class="btn btn-outline-primary" (click)="onSave()">Save this basket</button>
