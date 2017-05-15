@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Transaction} from '../models/transaction.model';
-import {Item} from '../models/item.model';
-import {Response} from '@angular/http';
-import {AuthService} from './auth.service';
 import {AuthHttpService} from './auth-http.service';
+import {BasketItem} from '../models/basketItem.model';
 
 @Injectable()
 export class TransactionService {
@@ -13,16 +11,12 @@ export class TransactionService {
   constructor(private http: AuthHttpService) {
   }
 
-  addToHistory(basket: { item: Item, quantity: number }[], price: number) {
-    this.transactions = [...this.transactions, {date: new Date(), basket, status: 'Pending', price}];
-    this.http.post('/api/transactions', {
-      date: new Date(),
-      basket,
-      status: 'Pending',
-      price
-    }).subscribe(
-      (response: Response) => alert('Transaction processed correctly'),
-      (error) => alert('Error during processing transaction')
+  addToHistory(basket: BasketItem[], price: number) {
+    const newTransaction = {date: new Date(), basket, status: 'Pending', price};
+    this.transactions = [...this.transactions, newTransaction];
+    this.http.post('/api/transactions/history', newTransaction).subscribe(
+      response => alert('Transaction processed correctly'),
+      error => alert('Error during processing transaction')
     );
   }
 

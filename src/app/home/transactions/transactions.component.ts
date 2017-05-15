@@ -4,8 +4,7 @@ import {TransactionService} from '../../services/transaction.service';
 
 @Component({
   selector: 'app-transactions',
-  templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.css']
+  templateUrl: './transactions.component.html'
 })
 export class TransactionsComponent implements OnInit {
 
@@ -17,11 +16,11 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit() {
     this.transactionService.getMyHistory().subscribe(
-      (response) => {
+      response => {
         this.transactions = response;
         this.isEmpty = this.transactions.length === 0;
       },
-      (error) => alert('Error occured')
+      error => alert('Error occured')
     );
   }
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
-import {User} from '../../landing/user.model';
+import {User} from '../../models/user.model';
 import {Transaction} from '../../models/transaction.model';
 
 @Component({
@@ -17,10 +17,10 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.adminService.getAllUsers().subscribe(
-      (response) => this.users = response, (error) => alert('Error occured')
+      response => this.users = response, error => alert('Error occured')
     );
     this.adminService.getAllTransactions().subscribe(
-      (response) => this.transactions = response, (error) => alert('Error occured')
+      response => this.transactions = response, error => alert('Error occured')
     );
   }
 

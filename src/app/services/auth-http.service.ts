@@ -19,7 +19,7 @@ export class AuthHttpService {
     return this.http.get(url, {
       headers: headers
     }).map(
-      (response) => {
+      response => {
         return response.json();
       }
     ).catch(e => {
@@ -39,7 +39,7 @@ export class AuthHttpService {
         this.router.navigate(['/landing']);
       }
       return e;
-    });;
+    });
   }
 
   put(url, data) {
@@ -51,7 +51,7 @@ export class AuthHttpService {
         this.router.navigate(['/landing']);
       }
       return e;
-    });;
+    });
   }
 
   delete(url, data) {
@@ -63,6 +63,6 @@ export class AuthHttpService {
         this.router.navigate(['/landing']);
       }
       return e;
-    });;
+    });
   }
 }

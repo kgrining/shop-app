@@ -2,11 +2,12 @@ import {Injectable} from '@angular/core';
 import {Item} from '../models/item.model';
 import {Subject} from 'rxjs/Subject';
 import {AuthHttpService} from './auth-http.service';
+import {BasketItem} from '../models/basketItem.model';
 
 @Injectable()
 export class BasketService {
 
-  basket: { item: Item, quantity: number }[] = [];
+  basket: BasketItem[] = [];
   basketPriceSubject: Subject<number> = new Subject();
   basketLoadedSubject: Subject<boolean> = new Subject();
 
@@ -14,32 +15,32 @@ export class BasketService {
   }
 
   addToBasket(addedItem: Item) {
-    const basketItem = this.basket.find(current => current.item.name === addedItem.name);
-    if (basketItem === undefined) {
+    const foundItem = this.basket.find(current => current.item.name === addedItem.name);
+    if (foundItem === undefined) {
       this.basket = [...this.basket, {item: addedItem, quantity: 1}];
     } else {
-      basketItem.quantity++;
+      foundItem.quantity++;
     }
     this.basketPriceSubject.next(this.calculatePrice());
   }
 
   changeItemQuantity(changedItem: Item, newQuantity: number) {
-    const basketItem = this.basket.find(current => current.item.name === changedItem.name);
-    if (basketItem === undefined) {
+    const foundItem = this.basket.find(current => current.item.name === changedItem.name);
+    if (foundItem === undefined) {
       alert('item not in basket');
     } else {
-      basketItem.quantity = newQuantity;
+      foundItem.quantity = newQuantity;
       this.basketPriceSubject.next(this.calculatePrice());
     }
 
   }
 
   removeFromBasket(removedItem: Item) {
-    const basketItem = this.basket.find(current => current.item.name === removedItem.name);
-    if (basketItem === undefined) {
+    const foundItem = this.basket.find(current => current.item.name === removedItem.name);
+    if (foundItem === undefined) {
       alert('item not in basket');
     } else {
-      this.basket = this.basket.filter((current) => current.item.name !== removedItem.name);
+      this.basket = this.basket.filter(current => current.item.name !== removedItem.name);
       this.basketPriceSubject.next(this.calculatePrice());
     }
   }
@@ -51,14 +52,14 @@ export class BasketService {
 
   saveBasket() {
     this.http.put('/api/users/saveBasket', this.basket).subscribe(
-      (response) => alert('Basket saved'),
-      (error) => alert('Error during basket saving')
+      response => alert('Basket saved'),
+      error => alert('Error during basket saving')
     );
   }
 
   getBasket() {
     this.http.get('/api/users/getBasket').subscribe(
-      (response) => {
+      response => {
         if (response) {
           this.basket = response;
           this.basketLoadedSubject.next(response.length > 0);
@@ -67,7 +68,7 @@ export class BasketService {
           }
         }
       },
-      (error) => alert('Error during basket loading')
+      error => alert('Error during basket loading')
     );
   }
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {User} from '../landing/user.model';
+import {Http} from '@angular/http';
+import {User} from '../models/user.model';
 import 'rxjs/Rx';
 import {Router} from '@angular/router';
 
@@ -12,14 +12,14 @@ export class AuthService {
   signUp(user: User) {
     return this.http.post('/api/users', user)
       .map(
-        (response: Response) => response.json().id_token
+        response => response.json().id_token
       );
   }
 
   signIn(data) {
     return this.http.post('/api/users/authenticate', data)
       .map(
-        (response: Response) => response.json().id_token
+        response => response.json().id_token
       );
   }
 
@@ -34,7 +34,7 @@ export class AuthService {
 
   getMyUser() {
     const token = this.hasToken() ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.get('api/users/me' + token).map((response) => response.json());
+    return this.http.get('api/users/me' + token).map(response => response.json());
   }
 
 }

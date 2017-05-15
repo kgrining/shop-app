@@ -14,8 +14,8 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit() {
     this.itemService.getItems().subscribe(
-      (response) => this.items = response,
-      (err) => alert('Error occured')
+      response => this.items = response,
+      err => alert('Error occured')
     );
   }
 }

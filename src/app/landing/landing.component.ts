@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {BasketService} from '../services/basket.service';
@@ -34,12 +34,12 @@ export class LandingComponent {
     this.user.password = this.signupForm.value.password;
     this.signupForm.reset();
     this.authService.signUp(this.user).subscribe(
-      (token) => {
+      token => {
         localStorage.setItem('token', token);
         this.basketService.clearBasket();
         this.router.navigate(['/shop']);
       },
-      (error) => this.errorRegisterMessage = 'Registration failed'
+      error => this.errorRegisterMessage = 'Registration failed'
     );
 
   }
@@ -54,7 +54,7 @@ export class LandingComponent {
         this.basketService.clearBasket();
         this.router.navigate(['/shop']);
       },
-      (error) => this.errorLoginMessage = error.json().message
+      error => this.errorLoginMessage = error.json().message
     );
 
   }

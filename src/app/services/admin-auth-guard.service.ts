@@ -13,16 +13,16 @@ export class AdminAuthGuardService implements CanActivate {
   canActivate() {
     const token = this.authService.hasToken() ? '?token=' + localStorage.getItem('token') : '';
     return this.http.get('api/users/me' + token)
-      .map((response) => response.json())
+      .map(response => response.json())
       .map(
-        (response) => {
+        response => {
           if (response.status !== 401 && response.admin === true) {
             return true;
           } else {
             this.router.navigate(['/landing']);
             return false;
           }
-        }, (error) => {
+        }, error => {
           this.router.navigate(['/landing']);
           return false;
         }).catch(err => {

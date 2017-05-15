@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Item} from '../models/item.model';
 import {BasketService} from '../services/basket.service';
 import {AuthService} from '../services/auth.service';
-import {User} from '../landing/user.model';
+import {User} from '../models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -20,13 +20,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getMyUser().subscribe(
-      (response) => this.me = response,
-      (error) => alert('Error occured')
+      response => this.me = response,
+      error => alert('Error occured')
     );
     this.basket = this.basketService.basket;
     this.basketPrice = this.basketService.calculatePrice();
     this.basketService.basketPriceSubject.subscribe(
-      (basketPrice: number) => {
+      basketPrice => {
         this.basketPrice = basketPrice;
       }
     );

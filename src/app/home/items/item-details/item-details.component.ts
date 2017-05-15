@@ -5,7 +5,7 @@ import {Item} from '../../../models/item.model';
 import {BasketService} from '../../../services/basket.service';
 import {Opinion} from '../../../models/opinion.model';
 import {AuthService} from '../../../services/auth.service';
-import {User} from '../../../landing/user.model';
+import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-item-details',
@@ -23,14 +23,14 @@ export class ItemDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getMyUser().subscribe(
-      (response) => this.user = response,
-      (error) => alert('Error occured')
+      response => this.user = response,
+      error => alert('Error occured')
     );
     this.itemService.getSingleItem(this.route.snapshot.params.id).subscribe(
-      (response) => {
+      response => {
         this.item = response;
       },
-      (error) => alert('Error occured')
+      error => alert('Error occured')
     );
   }
 

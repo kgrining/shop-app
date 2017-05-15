@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Item} from '../models/item.model';
 import {AuthHttpService} from './auth-http.service';
 
 @Injectable()
@@ -14,14 +13,14 @@ export class ItemService {
   }
 
   getSingleItem(id) {
-    return this.http.get('/api/items/' + id);
+    return this.http.get(`/api/items/${id}`);
   }
 
   addOpinion(itemId: string, content: string) {
     const body = {content};
-    this.http.post('/api/items/addOpinion/' + itemId, body).subscribe(
-      (response) => alert('Your opinion was added'),
-      (error) => alert('Error during opinion adding')
+    this.http.post(`/api/items/${itemId}/opinions`, body).subscribe(
+      response => alert('Your opinion was added'),
+      error => alert('Error during opinion adding')
     );
   }
 
