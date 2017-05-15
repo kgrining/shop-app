@@ -14,14 +14,14 @@ export class TransactionService {
   addToHistory(basket: BasketItem[], price: number) {
     const newTransaction = {date: new Date(), basket, status: 'Pending', price};
     this.transactions = [...this.transactions, newTransaction];
-    this.http.post('/api/transactions/history', newTransaction).subscribe(
+    this.http.post('/api/transactions', newTransaction).subscribe(
       response => alert('Transaction processed correctly'),
       error => alert('Error during processing transaction')
     );
   }
 
   getMyHistory() {
-    return this.http.get('/api/getHistory');
+    return this.http.get('/api/transactions/history');
   }
 
 }
