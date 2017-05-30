@@ -9,7 +9,8 @@ import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-item-details',
-  templateUrl: './item-details.component.html'
+  templateUrl: './item-details.component.html',
+  styleUrls: ['./item-details.component.css']
 })
 export class ItemDetailsComponent implements OnInit {
 

@@ -1,17 +1,27 @@
-<div *ngIf="item">
-  <div class="cardClass">
-    <img class="card-img-top" src={{item.imgPath}} alt="Img not loaded!">
-    <div class="card-block">
-      <h4 class="card-title">{{item.name}} - {{item.price | currency:'EUR':true}}</h4>
-      <p class="card-text">{{item.desc}}</p>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-success" (click)="onAdd()">Add to basket!</button>
+<div class="details-window" *ngIf="item">
+  <div class="img-left">
+    <img class="img" src={{item.imgPath}} alt="Img not loaded!">
+  </div>
+
+  <span class="title-item">{{item.name}} ({{item.price | currency:'EUR':true}})</span>
+
+  <div>
+    <p class="item-text">{{item.desc}}</p>
+  </div>
+
+  <button class="btn btn-green" (click)="onAdd()">Add to basket!</button>
+
+
+  <div class="opinion-window">
+    <div class="opinion" *ngFor="let opinion of item.opinions">
+      Opinion by {{opinion.user.username}} (posted on {{opinion.date | date:'short'}}): {{opinion.content}}
     </div>
   </div>
-  <div *ngFor="let opinion of item.opinions">
-    Opinion by {{opinion.user.username}} (posted on {{opinion.date | date:'short'}}): {{opinion.content}}
-  </div>
-  <input type="text" [(ngModel)]="newOpinionDesc" placeholder="Write your opinion here!">
-  <button class="btn btn-primary" (click)="onOpinion()">Add opinion</button>
+
+
+<div>
+  <input class="opinion-b" type="text" [(ngModel)]="newOpinionDesc" placeholder="Write your opinion here!">
+  <button class="btn btn-purple" (click)="onOpinion()">Add opinion</button>
+</div>
+
 </div>

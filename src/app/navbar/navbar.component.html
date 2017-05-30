@@ -1,15 +1,15 @@
-<nav class="navbar navClass navbar-toggleable-md navbar-light bg-faded">
-  <div class="container">
+<nav class="navbar navClass navbar-toggleable-md bg-faded">
+
     <div class="navClass collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link " routerLink="/shop">Shop</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/history">History</a></li>
+        <li class="nav-item"><a class="nav-link link" routerLink="/">Shop</a></li>
+        <li class="nav-item"><a class="nav-link link" routerLink="/history">History</a></li>
       </ul>
       <ul class="navbar-nav navbar-right">
-        <li class="nav-item"><a class="nav-link" routerLink="/basket">Basket {{ price | currency:'EUR':true}}</a></li>
-        <li class="nav-item" *ngIf="me && me.admin"><a class="nav-link" routerLink="/admin">Admin View</a></li>
-        <li class="nav-item"><a class="nav-link" (click)="onLogout()">Log out</a></li>
+        <li class="nav-item"><a class="nav-link link" routerLink="/basket">Basket {{ price | currency:'EUR':true}}</a></li>
+        <li class="nav-item" *ngIf="me && me.admin"><a class="nav-link link " routerLink="/admin">Admin View</a></li>
+        <li class="nav-item"><a class="nav-link link" (click)="onLogout()">Log out</a></li>
       </ul>
     </div>
-  </div>
+
 </nav>

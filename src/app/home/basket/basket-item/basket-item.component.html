@@ -1,13 +1,16 @@
-<div class="row">
-  <div class="col-md-12 basketclass">
+<div class="container basket-class">
+<div>
+  <span class="title-item">{{ basketItem.item.name }}</span>
 
-    <span>{{ basketItem.item.name }}</span>
+  <input class="input-item" type="text" min="1" [(ngModel)]="currentQuantity" (keyup)="onQuantityChange()" appOnlyNumbers="true">
+  <span class="title-item">x {{ basketItem.item.price | currency:'EUR':true}}</span>
 
-    <input type="text" min="1" [(ngModel)]="currentQuantity" (keyup)="onQuantityChange()" appOnlyNumbers="true">
-    <span>x {{ basketItem.item.price | currency:'EUR':true}}</span>
-    <button class="alignright btn btn-outline-danger" (click)="onRemove()">Remove!</button>
-    <span class="alignright">{{currentSum | currency:'EUR':true}}</span>
+</div>
+
+  <span class="title-item sum">{{currentSum | currency:'EUR':true}}</span>
+
+  <button class="btn-red" (click)="onRemove()"><i class="fa fa-times" aria-hidden="true"></i>
+  </button>
 
   </div>
 
-</div>

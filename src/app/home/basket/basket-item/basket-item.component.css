@@ -1,10 +1,29 @@
-.basketclass {
-  padding: 10px;
+.basket-class {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border: solid 1px #e1e1e1;
-  margin: 5px;
-  background: #FFF;
+  border-radius: 10px;
+  margin: 10px;
 }
 
-.alignright {
-  float: right;
+.title-item {
+  color: #4a4353;
+  font-size: 1.1rem;
+  padding: 20px;
+}
+.sum {
+  font-weight: 900;
+  font-size: 1rem;
+}
+.btn-red {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 5px;
+  background-color: #e3aabe;
+  border: #ce9bad;
+  height: 30px;
+  width: 30px;
 }

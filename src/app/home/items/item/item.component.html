@@ -1,12 +1,14 @@
-<div class="cardClass" class="odd">
-  <img class="card-img-top" width="100%" src={{item.imgPath}} alt="Img not loaded!">
-  <div class="card-block">
-    <h4 class="card-title">{{item.name}} </h4>
+<div class="item-window">
+  <img class="img-top" src="{{item.imgPath}}" alt="Img not loaded!">
+  <h4 class="title-item">{{item.name}} </h4>
 
-    <h6 class="card-text desc">{{item.desc | slice:0:80}}</h6>
-    <h6 class="price"> {{item.price | currency:'EUR':true}}</h6>
-  </div>
+  <span class="item-text">{{item.desc | slice:0:75}}...</span>
+  <span class="price"> {{item.price | currency:'EUR':true}}</span>
 
-  <button class="btn btn-primary" (click)="onAdd()">Add to basket!</button>
-  <button class="btn btn-primary" [routerLink]="['/item-details', item._id]">Details</button>
+
+  <button class="btn btn-item" (click)="onAdd()">Add to basket!</button>
+  <button class="btn btn-item" [routerLink]="['/item-details', item._id]">Details</button>
+
+
+
 </div>

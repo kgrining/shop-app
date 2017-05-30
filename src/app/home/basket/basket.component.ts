@@ -20,7 +20,10 @@ export class BasketComponent implements OnInit {
     this.basket = this.basketService.basket;
     this.basketPrice = this.basketService.calculatePrice();
     this.basketService.basketPriceSubject.subscribe(
-      basketPrice => this.basketPrice = basketPrice
+      basketPrice => {
+        this.basketPrice = basketPrice;
+        this.basket = this.basketService.basket;
+      }
     );
     this.basketService.basketLoadedSubject.subscribe(
       isLoaded => {

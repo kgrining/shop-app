@@ -17,14 +17,14 @@ export class AuthGuardService implements CanActivate {
         if (response.json().status !== 401) {
           return true;
         } else {
-          this.router.navigate(['/landing']);
+          this.router.navigate(['/landing', 'register']);
           return false;
         }
       }, error => {
-        this.router.navigate(['/landing']);
+        this.router.navigate(['/landing', 'register']);
         return false;
       }).catch(err => {
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/landing', 'register']);
       return Observable.of(false);
     });
   }

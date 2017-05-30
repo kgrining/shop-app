@@ -37,7 +37,7 @@ export class LandingComponent {
       token => {
         localStorage.setItem('token', token);
         this.basketService.clearBasket();
-        this.router.navigate(['/shop']);
+        this.router.navigate(['/']);
       },
       error => this.errorRegisterMessage = 'Registration failed'
     );
@@ -52,7 +52,7 @@ export class LandingComponent {
       token => {
         localStorage.setItem('token', token);
         this.basketService.clearBasket();
-        this.router.navigate(['/shop']);
+        this.router.navigate(['/']);
       },
       error => this.errorLoginMessage = error.json().message
     );

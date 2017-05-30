@@ -26,6 +26,8 @@ import {ItemDetailsComponent} from './home/items/item-details/item-details.compo
 import {AdminAuthGuardService} from './services/admin-auth-guard.service';
 import {AdminService} from './services/admin.service';
 import {AuthHttpService} from './services/auth-http.service';
+import {LoginComponent} from './landing/login/login.component';
+import {RegisterComponent} from './landing/register/register.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import {AuthHttpService} from './services/auth-http.service';
     BasketItemComponent,
     OnlyNumbersDirective,
     TransactionItemComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,19 @@
-<div class="container classhost">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <form (ngSubmit)="onRegister()" #f="ngForm">
+<div class="backgrount-landing">
+  <div class="menu btn-group">
+    <button type="button"
+            class="btn btn-lg btn-purple "
+            [routerLink]="['/landing', 'register']">REGISTER</button>
+    <button type="button"
+            class="btn btn-lg btn-purple"
+            [routerLink]="['/landing', 'login']">LOG IN</button>
+
+  </div>
+
+  <div class="landing-window">
+
+
+    <router-outlet></router-outlet>
+      <!--<form class="form-landing" (ngSubmit)="onRegister()" #f="ngForm">
         <div class="form-group">
           <label for="email">Email address</label>
           <input type="email" class="form-control" name="email"
@@ -33,13 +45,10 @@
           <button class="btn btn-primary" type="submit">Register</button>
         </div>
       </form>
+
       <div *ngIf="errorRegisterMessage">{{errorRegisterMessage}}</div>
-    </div>
-  </div>
-  <hr>
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <form (ngSubmit)="onLogin()" #login="ngForm">
+
+      <form  class="form-landing" (ngSubmit)="onLogin()" #login="ngForm">
         <div class="form-group">
           <label for="login">Login</label>
           <input type="text" class="form-control" name="usernameOrEmail" minlength="2" ngModel id="login"
@@ -55,6 +64,7 @@
         </div>
       </form>
       <div *ngIf="errorLoginMessage">{{errorLoginMessage}}</div>
-    </div>
+    </div>-->
+
   </div>
 </div>

@@ -1,0 +1,18 @@
+<div class="form-landing">
+<form (ngSubmit)="onLogin()" #login="ngForm">
+  <div class="form-group">
+    <label for="login">Login</label>
+    <input type="text" class="form-control" name="usernameOrEmail" minlength="2" ngModel id="login"
+           placeholder="Enter login">
+  </div>
+  <div class="form-group">
+    <label for="passwordLogin">Password</label>
+    <input type="password" class="form-control" name="passwordLogin" ngModel id="passwordLogin"
+           placeholder="Password">
+  </div>
+  <div class="text-center">
+    <button class="btn  btn-success" type="submit">Login</button>
+  </div>
+</form>
+<div *ngIf="errorLoginMessage">{{errorLoginMessage}}</div>
+</div>
